@@ -1,68 +1,687 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aakash INVICTUS - Strategic Growth Plan</title>
-    <link rel="icon" href="invictus-icon.png" type="image/png">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/countup.js/2.0.7/countUp.min.js"></script>
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #F7F7F7; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F7F7F7;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .kpi-card {
+            background-color: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .kpi-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.1);
+        }
+        .timeline-item {
+            position: relative;
+            padding-bottom: 2rem;
+            padding-left: 2.5rem;
+            border-left: 2px solid #053F5C;
+        }
+        .timeline-dot {
+            position: absolute;
+            left: -0.5rem;
+            top: 0;
+            height: 1rem;
+            width: 1rem;
+            border-radius: 9999px;
+            background-color: #F34213;
+            border: 2px solid #FFFFFF;
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #00A6FB, #053F5C);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .btn-primary {
+            background-color: #00A6FB;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #053F5C;
+        }
+        .loading-spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #00A6FB;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 0.5rem;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        /* Hide LLM features for PDF export */
+        .pdf-export-hide {
+            display: none !important;
+        }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800" onload="AOS.init()">
+<body class="bg-gray-50 text-gray-800">
 
-<main class="container mx-auto p-4 md:p-8" data-aos="fade-up">
-    <header class="text-center mb-12">
-        <h1 class="text-4xl md:text-6xl font-black text-blue-600">PROJECT INVICTUS</h1>
-        <p class="text-xl mt-2 text-gray-600">A Strategic Blueprint for Dominating JEE Prep in South India</p>
-    </header>
+    <main class="container mx-auto p-4 md:p-8" id="infographic-content">
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-6xl font-black gradient-text">PROJECT INVICTUS</h1>
+            <p class="text-xl mt-2 text-gray-600">A Strategic Blueprint for Dominating JEE Prep in South India</p>
+        </header>
 
-    <section class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-        <div class="bg-white p-6 rounded shadow text-center" data-aos="fade-right">
-            <p class="text-5xl font-extrabold text-blue-500"><span id="admissionCount">0</span>+</p>
-            <p class="text-lg font-semibold text-gray-700 mt-2">Total Admission Goal</p>
-        </div>
-        <div class="bg-white p-6 rounded shadow text-center" data-aos="fade-left">
-            <p class="text-5xl font-extrabold text-orange-500">4</p>
-            <p class="text-lg font-semibold text-gray-700 mt-2">Target Cities</p>
-        </div>
-    </section>
+        <section id="kpis" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            <div class="kpi-card text-center">
+                <p class="text-5xl font-extrabold text-[#00A6FB]">3,500+</p>
+                <p class="text-lg font-semibold text-gray-700 mt-2">Total Admission Goal</p>
+                <p class="text-sm text-gray-500">Across Four Key Southern Cities</p>
+            </div>
+            <div class="kpi-card text-center">
+                <p class="text-5xl font-extrabold text-[#F34213]">4</p>
+                <p class="text-lg font-semibold text-gray-700 mt-2">Target Cities</p>
+                <p class="text-sm text-gray-500">Hyderabad, Vizag, Chennai, Bengaluru</p>
+            </div>
+            <div class="kpi-card text-center">
+                <p class="text-5xl font-extrabold text-[#053F5C]">5</p>
+                <p class="text-lg font-semibold text-gray-700 mt-2">Student Segments</p>
+                <p class="text-sm text-gray-500">Class IX, X, XI, XII & XII Pass</p>
+            </div>
+             <div class="kpi-card text-center">
+                <p class="text-5xl font-extrabold" style="color:#1abc9c">88%</p>
+                <p class="text-lg font-semibold text-gray-700 mt-2">Projected Growth</p>
+                <p class="text-sm text-gray-500">In Indian Tutorial Business (2 Yrs)</p>
+            </div>
+        </section>
 
-    <footer class="text-center pt-8 border-t border-gray-300">
-        <p class="text-gray-500 text-sm">&copy; 2025 Aakash Institute. All Rights Reserved. Version 1.0 • Updated: July 10, 2025</p>
-    </footer>
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold text-center mb-4 text-[#053F5C]">The Challenge: Current vs. Target Admissions</h2>
+                <p class="text-center text-gray-600 mb-6">The INVICTUS program aims for ambitious growth, bridging the gap between current traction and anticipated market potential in key southern cities.</p>
+                <div class="chart-container">
+                    <canvas id="admissionGoalsChart"></canvas>
+                </div>
+            </div>
 
-<section class="text-center my-12">
-    <button onclick="downloadPDF()" class="btn-primary text-lg">📄 Export This Infographic as PDF</button>
-</section>
-</main>
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold text-center mb-4 text-[#053F5C]">Competitive Fee Landscape (2-Year Programs)</h2>
+                 <p class="text-center text-gray-600 mb-6">INVICTUS is positioned as a premium offering. Its proposed fee structure is competitive against other top-tier institutes providing comprehensive, multi-year programs.</p>
+                <div class="chart-container">
+                    <canvas id="feeComparisonChart"></canvas>
+                </div>
+            </div>
+        </section>
+        
+        <section class="mb-12">
+             <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold text-center mb-4 text-[#053F5C]">Admission Target Breakdown by City & Class</h2>
+                <p class="text-center text-gray-600 mb-6">The admission goals are strategically distributed across different student segments to build a strong pipeline from foundation to advanced levels.</p>
+                <div class="chart-container" style="max-width: 1000px; height: 450px;">
+                    <canvas id="targetMixChart"></canvas>
+                </div>
+            </div>
+        </section>
 
-<script>
-    const countUp = new CountUp('admissionCount', 3500);
-    if (!countUp.error) countUp.start();
-</script>
+        <section id="strategy" class="mb-12">
+            <h2 class="text-3xl font-bold text-center mb-8 text-[#053F5C]">Core Strategic Growth Levers</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="kpi-card p-6 text-center">
+                    <div class="text-6xl mb-4 text-[#00A6FB]">🤝</div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">Integrated School Tie-ups & Strategic Expansion</h3>
+                    <p class="text-gray-600">Forge deep partnerships with top-performing schools in high-density areas, offering seamless integrated programs from Class IX to XII to build a strong pipeline.</p>
+                </div>
+                <div class="kpi-card p-6 text-center">
+                    <div class="text-6xl mb-4 text-[#F34213]">🚀</div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">Innovative Experiential Marketing & Digital Ecosystem</h3>
+                    <p class="text-gray-600">Conduct "Masterclass Series" and "Parent-Student Interactive Sessions" and leverage AI-powered personalized digital campaigns to showcase advanced pedagogy and build trust.</p>
+                </div>
+                <div class="kpi-card p-6 text-center">
+                     <div class="text-6xl mb-4 text-[#053F5C]">🏆</div>
+                    <h3 class="text-xl font-bold mb-2 text-gray-800">Targeted Scholarship Drives & Advanced Value Proposition</h3>
+                    <p class="text-gray-600">Utilize ANTHE as a primary talent acquisition funnel, positioning INVICTUS as the direct gateway to elite prep with superior faculty, personalized analytics, and dedicated mentorship.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="llm-features" class="mb-12 grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold text-center mb-4 text-[#053F5C]">✨ School Tie-up Pitch Generator ✨</h2>
+                <p class="text-center text-gray-600 mb-6">Generate a persuasive pitch for school principals to partner with Aakash INVICTUS.</p>
+                <div class="flex flex-col space-y-4">
+                    <div>
+                        <label for="pitchCity" class="block text-gray-700 text-sm font-bold mb-2">Select City:</label>
+                        <select id="pitchCity" class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                            <option value="Hyderabad">Hyderabad</option>
+                            <option value="Vizag">Vizag</option>
+                            <option value="Chennai">Chennai</option>
+                            <option value="Bengaluru">Bengaluru</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="pitchProgram" class="block text-gray-700 text-sm font-bold mb-2">Select Program Type:</label>
+                        <select id="pitchProgram" class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                            <option value="2-year Class XI & XII program">2-year Class XI & XII program</option>
+                            <option value="4-year IX to XII program">4-year IX to XII program</option>
+                            <option value="Class XII Pass program">Class XII Pass program</option>
+                        </select>
+                    </div>
+                    <button id="generatePitchBtn" class="btn-primary flex items-center justify-center">
+                        Generate Pitch <span id="pitchSpinner" class="hidden loading-spinner"></span>
+                    </button>
+                    <textarea id="pitchOutput" rows="8" class="mt-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Generated pitch will appear here..." readonly></textarea>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold text-center mb-4 text-[#053F5C]">✨ Promotional Activity Idea Generator ✨</h2>
+                <p class="text-center text-gray-600 mb-6">Get innovative ideas for promotional activities based on month and city.</p>
+                <div class="flex flex-col space-y-4">
+                    <div>
+                        <label for="activityMonth" class="block text-gray-700 text-sm font-bold mb-2">Select Month:</label>
+                        <select id="activityMonth" class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                            <option value="July">July</option>
+                            <option value="August">August</option>
+                            <option value="September">September</option>
+                            <option value="October">October</option>
+                            <option value="November">November</option>
+                            <option value="December">December</option>
+                            <option value="January">January</option>
+                            <option value="February">February</option>
+                            <option value="March">March</option>
+                            <option value="April">April</option>
+                            <option value="May">May</option>
+                            <option value="June">June</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="activityCity" class="block text-gray-700 text-sm font-bold mb-2">Select City:</label>
+                        <select id="activityCity" class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                            <option value="Hyderabad">Hyderabad</option>
+                            <option value="Vizag">Vizag</option>
+                            <option value="Chennai">Chennai</option>
+                            <option value="Bengaluru">Bengaluru</option>
+                        </select>
+                    </div>
+                    <button id="generateActivityBtn" class="btn-primary flex items-center justify-center">
+                        Generate Ideas <span id="activitySpinner" class="hidden loading-spinner"></span>
+                    </button>
+                    <textarea id="activityOutput" rows="8" class="mt-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Generated activities will appear here..." readonly></textarea>
+                </div>
+            </div>
+
+            <!-- New Feature 1: Alumni Success Story Draft Generator -->
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold text-center mb-4 text-[#053F5C]">✨ Alumni Success Story Draft Generator ✨</h2>
+                <p class="text-center text-gray-600 mb-6">Draft inspiring alumni success stories for marketing materials.</p>
+                <div class="flex flex-col space-y-4">
+                    <div>
+                        <label for="alumniName" class="block text-gray-700 text-sm font-bold mb-2">Alumni Name:</label>
+                        <input type="text" id="alumniName" class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="E.g., Rohan Sharma">
+                    </div>
+                    <div>
+                        <label for="alumniRank" class="block text-gray-700 text-sm font-bold mb-2">JEE Rank:</label>
+                        <input type="text" id="alumniRank" class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="E.g., AIR 150 (JEE Advanced)">
+                    </div>
+                    <div>
+                        <label for="alumniYear" class="block text-gray-700 text-sm font-bold mb-2">Passing Year:</label>
+                        <input type="number" id="alumniYear" class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="E.g., 2023">
+                    </div>
+                    <button id="generateAlumniStoryBtn" class="btn-primary flex items-center justify-center">
+                        Generate Story <span id="alumniStorySpinner" class="hidden loading-spinner"></span>
+                    </button>
+                    <textarea id="alumniStoryOutput" rows="8" class="mt-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Generated alumni story will appear here..." readonly></textarea>
+                </div>
+            </div>
+
+            <!-- New Feature 2: Parent Seminar Topic Suggester -->
+            <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold text-center mb-4 text-[#053F5C]">✨ Parent Seminar Topic Suggester ✨</h2>
+                <p class="text-center text-gray-600 mb-6">Get engaging topic ideas for parent seminars.</p>
+                <div class="flex flex-col space-y-4">
+                    <div>
+                        <label for="seminarCity" class="block text-gray-700 text-sm font-bold mb-2">Select City:</label>
+                        <select id="seminarCity" class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                            <option value="Hyderabad">Hyderabad</option>
+                            <option value="Vizag">Vizag</option>
+                            <option value="Chennai">Chennai</option>
+                            <option value="Bengaluru">Bengaluru</option>
+                            <option value="General">General (Any City)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="seminarFocus" class="block text-gray-700 text-sm font-bold mb-2">Seminar Focus:</label>
+                        <select id="seminarFocus" class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                            <option value="JEE Preparation Strategies">JEE Preparation Strategies</option>
+                            <option value="Parental Support for Competitive Exams">Parental Support for Competitive Exams</option>
+                            <option value="Career Guidance & Future Prospects">Career Guidance & Future Prospects</option>
+                            <option value="Balancing Academics & Well-being">Balancing Academics & Well-being</option>
+                        </select>
+                    </div>
+                    <button id="generateSeminarTopicBtn" class="btn-primary flex items-center justify-center">
+                        Generate Topics <span id="seminarTopicSpinner" class="hidden loading-spinner"></span>
+                    </button>
+                    <textarea id="seminarTopicOutput" rows="8" class="mt-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Generated seminar topics will appear here..." readonly></textarea>
+                </div>
+            </div>
+        </section>
+
+        <section id="timeline" class="mb-12">
+             <div class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-3xl font-bold text-center mb-8 text-[#053F5C]">Month-wise Promotional Activity Plan</h2>
+                 <div class="relative">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <h4 class="font-bold text-lg text-[#F34213]">July: Market Penetration & Awareness</h4>
+                        <p class="text-gray-600">Launch "Unlock Your Advanced Potential" digital campaign and Masterclass Series. Initiate targeted outreach to top-tier schools for tie-ups.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <h4 class="font-bold text-lg text-[#F34213]">August: Lead Nurturing & Engagement</h4>
+                        <p class="text-gray-600">Roll out "Unshakeable Foundation" content series. Host Parent-Student Interactive Sessions to deepen engagement and explain advanced pedagogy.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <h4 class="font-bold text-lg text-[#F34213]">September: Conversion & Enrollment Drive</h4>
+                        <p class="text-gray-600">Promote "ANTHE for INVICTUS" as the direct gateway to the elite program, supported by exclusive prep workshops for high-potential students.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <h4 class="font-bold text-lg text-[#F34213]">October: Pre-JEE Main 1 Enrollment Boost</h4>
+                        <p class="text-gray-600">Launch "Master JEE Main with Advanced Edge" strategy series and mock test marathon with deep, personalized analytics.</p>
+                    </div>
+                     <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <h4 class="font-bold text-lg text-[#F34213]">November: Sustained Engagement</h4>
+                        <p class="text-gray-600">Run "Balancing Boards & JEE" workshops, positioning INVICTUS as the solution for managing academic pressure efficiently.</p>
+                    </div>
+                     <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <h4 class="font-bold text-lg text-[#F34213]">December: Final Push & Post-JEE Main 1 Engagement</h4>
+                        <p class="text-gray-600">Provide post-exam analysis and launch "INVICTUS Advanced Pathway" for serious aspirants, driving early admissions for the next cycle.</p>
+                    </div>
+                     <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <h4 class="font-bold text-lg text-[#F34213]">January: JEE Advanced Focus & Early Class XI/XII Admissions</h4>
+                        <p class="text-gray-600">Direct focus on JEE Advanced as a distinct, advanced journey, attracting serious aspirants early.</p>
+                    </div>
+                     <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <h4 class="font-bold text-lg text-[#F34213]">February: Talent Identification & Scholarship Programs</h4>
+                        <p class="text-gray-600">A specialized scholarship exam for INVICTUS, identifying and rewarding top talent for advanced programs.</p>
+                    </div>
+                     <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <h4 class="font-bold text-lg text-[#F34213]">March: Integrated Program Onboarding & Summer Prep</h4>
+                        <p class="text-gray-600">Seamless transition for integrated students, offering summer intensive options for others.</p>
+                    </div>
+                     <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <h4 class="font-bold text-lg text-[#F34213]">April: JEE Main Session 2 & Post-Exam Counseling</h4>
+                        <p class="text-gray-600">Provides immediate, expert guidance post-exam, funneling students into advanced or repeater programs.</p>
+                    </div>
+                     <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <h4 class="font-bold text-lg text-[#F34213]">May: Foundation & Olympiad Focus</h4>
+                        <p class="text-gray-600">Captures younger talent early, building a long-term pipeline with a focus on holistic competitive prep.</p>
+                    </div>
+                     <div class="timeline-item" style="border-left: 2px solid transparent;">
+                        <div class="timeline-dot"></div>
+                        <h4 class="font-bold text-lg text-[#F34213]">June: New Academic Year Kick-off & Enrollment</h4>
+                        <p class="text-gray-600">High-impact event showcasing INVICTUS success, building excitement for the new academic year.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="text-center pt-8 border-t border-gray-300">
+            <p class="text-gray-500">&copy; 2025 Aakash Institute. All Rights Reserved. This infographic is a strategic representation based on market research.</p>
+        </footer>
+
+    </main>
+    <div class="text-center mt-8 mb-8">
+        <button id="exportPdfBtn" class="btn-primary flex items-center justify-center mx-auto">
+            Download as PDF <span id="pdfSpinner" class="hidden loading-spinner"></span>
+        </button>
+    </div>
+
+    <script>
+        function wrapLabel(str, maxLen) {
+            if (str.length <= maxLen) {
+                return str;
+            }
+            const words = str.split(' ');
+            let lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + ' ' + word).trim().length > maxLen) {
+                    lines.push(currentLine.trim());
+                    currentLine = word;
+                } else {
+                    currentLine = (currentLine + ' ' + word).trim();
+                }
+            }
+            if (currentLine) {
+                lines.push(currentLine.trim());
+            }
+            return lines;
+        }
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+              return label.join(' ');
+            }
+            return label;
+        };
+        
+        const sharedChartOptions = {
+            maintainAspectRatio: false,
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                    labels: {
+                        font: {
+                            size: 12,
+                            family: 'Inter',
+                        }
+                    }
+                },
+                tooltip: {
+                    callbacks: {
+                        title: tooltipTitleCallback
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    ticks: {
+                        font: {
+                            size: 11,
+                             family: 'Inter',
+                        }
+                    },
+                    grid: {
+                        display: false
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                     ticks: {
+                        font: {
+                            size: 11,
+                             family: 'Inter',
+                        }
+                    },
+                }
+            }
+        };
+
+        const colors = {
+            blue: '#00A6FB',
+            orange: '#F34213',
+            darkBlue: '#053F5C',
+            lightGray: '#F7F7F7',
+            white: '#FFFFFF',
+            green: '#27ae60',
+            purple: '#8e44ad',
+            yellow: '#f1c40f',
+            red: '#e74c3c'
+        };
+
+        const admissionGoalsCtx = document.getElementById('admissionGoalsChart').getContext('2d');
+        new Chart(admissionGoalsCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Chennai', 'Hyderabad', 'Vizag', 'Bengaluru'],
+                datasets: [{
+                    label: 'Current Admissions',
+                    data: [800, 100, 100, 100],
+                    backgroundColor: colors.orange,
+                    borderColor: colors.orange,
+                    borderWidth: 1,
+                    barPercentage: 0.6,
+                    categoryPercentage: 0.7
+                }, {
+                    label: 'Target Admissions',
+                    data: [2000, 500, 500, 500],
+                    backgroundColor: colors.blue,
+                    borderColor: colors.blue,
+                    borderWidth: 1,
+                    barPercentage: 0.6,
+                    categoryPercentage: 0.7
+                }]
+            },
+            options: {
+                ...sharedChartOptions,
+                scales: {
+                    y: { ...sharedChartOptions.scales.y, title: { display: true, text: 'Number of Students' } }
+                }
+            }
+        });
+        
+        const feeComparisonCtx = document.getElementById('feeComparisonChart').getContext('2d');
+        new Chart(feeComparisonCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Aakash INVICTUS (MSP)', wrapLabel('Narayana (2-Yr)', 16), wrapLabel('FIITJEE (2-Yr)', 16), 'Vedantu (2-Yr)', 'Resonance (2-Yr)'],
+                datasets: [{
+                    label: 'Fee in INR (Lakhs)',
+                    data: [3.5, 4.68, 1.60, 2.35, 3.30], /* Updated data from tables */
+                    backgroundColor: [colors.orange, colors.darkBlue, colors.darkBlue, colors.darkBlue, colors.darkBlue, colors.darkBlue],
+                    borderColor: [colors.orange, colors.darkBlue, colors.darkBlue, colors.darkBlue, colors.darkBlue, colors.darkBlue],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                ...sharedChartOptions,
+                scales: {
+                    y: { ...sharedChartOptions.scales.y, title: { display: true, text: 'Fee in INR (Lakhs)' } }
+                },
+                plugins: {
+                     ...sharedChartOptions.plugins,
+                     legend: { display: false }
+                }
+            }
+        });
+        
+        const targetMixCtx = document.getElementById('targetMixChart').getContext('2d');
+        new Chart(targetMixCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Chennai (2000)', 'Hyderabad (500)', 'Vizag (500)', 'Bengaluru (500)'],
+                datasets: [
+                    { label: 'Class IX', data: [300, 100, 100, 100], backgroundColor: colors.blue },
+                    { label: 'Class X', data: [400, 100, 100, 100], backgroundColor: colors.orange },
+                    { label: 'Class XI', data: [500, 100, 100, 100], backgroundColor: colors.green },
+                    { label: 'Class XII', data: [500, 100, 100, 100], backgroundColor: colors.purple },
+                    { label: 'XII Pass', data: [300, 100, 100, 100], backgroundColor: colors.yellow }
+                ]
+            },
+            options: {
+                ...sharedChartOptions,
+                indexAxis: 'x',
+                scales: {
+                    x: {
+                        stacked: true,
+                        ...sharedChartOptions.scales.x
+                    },
+                    y: {
+                        stacked: true,
+                        ...sharedChartOptions.scales.y,
+                        title: { display: true, text: 'Number of Students' }
+                    }
+                }
+            }
+        });
+
+        // Gemini API Integration
+        async function callGeminiAPI(prompt, outputElement, spinnerElement) {
+            outputElement.value = '';
+            spinnerElement.classList.remove('hidden');
+
+            let chatHistory = [];
+            chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+            const payload = { contents: chatHistory };
+            const apiKey = ""; // Canvas will automatically provide the API key at runtime
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const result = await response.json();
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    const text = result.candidates[0].content.parts[0].text;
+                    outputElement.value = text;
+                } else {
+                    outputElement.value = "Error: Could not generate response. Please try again.";
+                    console.error("Gemini API response structure unexpected:", result);
+                }
+            } catch (error) {
+                outputElement.value = "Error: Failed to connect to the API. Please check your network or try again later.";
+                console.error("Error calling Gemini API:", error);
+            } finally {
+                spinnerElement.classList.add('hidden');
+            }
+        }
+
+        // School Tie-up Pitch Generator
+        const generatePitchBtn = document.getElementById('generatePitchBtn');
+        const pitchCity = document.getElementById('pitchCity');
+        const pitchProgram = document.getElementById('pitchProgram');
+        const pitchOutput = document.getElementById('pitchOutput');
+        const pitchSpinner = document.getElementById('pitchSpinner');
+
+        generatePitchBtn.addEventListener('click', () => {
+            const city = pitchCity.value;
+            const program = pitchProgram.value;
+            const prompt = `Generate a concise, persuasive pitch (around 150-200 words) for a school principal in ${city} to partner with Aakash Institute for our 'INVICTUS: An Advanced JEE prep program'. Focus on the benefits for their students for the ${program} program, highlighting our JEE expert faculty (trained 1000s of IITians), new material, and premium course structure. Emphasize how this partnership can elevate their school's academic reputation and student success in JEE.`;
+            callGeminiAPI(prompt, pitchOutput, pitchSpinner);
+        });
+
+        // Promotional Activity Idea Generator
+        const generateActivityBtn = document.getElementById('generateActivityBtn');
+        const activityMonth = document.getElementById('activityMonth');
+        const activityCity = document.getElementById('activityCity');
+        const activityOutput = document.getElementById('activityOutput');
+        const activitySpinner = document.getElementById('activitySpinner');
+
+        generateActivityBtn.addEventListener('click', () => {
+            const month = activityMonth.value;
+            const city = activityCity.value;
+            const prompt = `Given the month of ${month} and the city of ${city}, suggest 3-4 innovative promotional activities for Aakash Institute's 'INVICTUS: An Advanced JEE prep program'. These activities should aim to attract students for JEE preparation, considering our premium course, expert faculty, and the need to achieve admission targets of 500 in Hyderabad/Vizag/Bengaluru and 2000 in Chennai. Think beyond traditional hoardings and press meets. Suggest activities that could be done in schools or public spaces, focusing on engagement and direct interaction.`;
+            callGeminiAPI(prompt, activityOutput, activitySpinner);
+        });
+
+        // New Feature: Alumni Success Story Draft Generator
+        const generateAlumniStoryBtn = document.getElementById('generateAlumniStoryBtn');
+        const alumniNameInput = document.getElementById('alumniName');
+        const alumniRankInput = document.getElementById('alumniRank');
+        const alumniYearInput = document.getElementById('alumniYear');
+        const alumniStoryOutput = document.getElementById('alumniStoryOutput');
+        const alumniStorySpinner = document.getElementById('alumniStorySpinner');
+
+        generateAlumniStoryBtn.addEventListener('click', () => {
+            const name = alumniNameInput.value.trim();
+            const rank = alumniRankInput.value.trim();
+            const year = alumniYearInput.value.trim();
+
+            if (!name || !rank || !year) {
+                alumniStoryOutput.value = "Please fill in all alumni details (Name, JEE Rank, Passing Year) to generate a story.";
+                return;
+            }
+
+            const prompt = `Draft a concise (around 150 words), inspiring alumni success story for Aakash INVICTUS. The student's name is ${name}, they achieved ${rank} in JEE, and passed in ${year}. Highlight their journey, how INVICTUS helped them achieve success, and encourage prospective students.`;
+            callGeminiAPI(prompt, alumniStoryOutput, alumniStorySpinner);
+        });
+
+        // New Feature: Parent Seminar Topic Suggester
+        const generateSeminarTopicBtn = document.getElementById('generateSeminarTopicBtn');
+        const seminarCitySelect = document.getElementById('seminarCity');
+        const seminarFocusSelect = document.getElementById('seminarFocus');
+        const seminarTopicOutput = document.getElementById('seminarTopicOutput');
+        const seminarTopicSpinner = document.getElementById('seminarTopicSpinner');
+
+        generateSeminarTopicBtn.addEventListener('click', () => {
+            const city = seminarCitySelect.value;
+            const focus = seminarFocusSelect.value;
+
+            const prompt = `Suggest 3-5 engaging and relevant seminar topics for parents in ${city} focusing on "${focus}" in the context of their child's JEE preparation with Aakash INVICTUS. The topics should be appealing and address common parent concerns or aspirations.`;
+            callGeminiAPI(prompt, seminarTopicOutput, seminarTopicSpinner);
+        });
 
 
-<!-- html2pdf.js CDN -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
-<script>
-  function downloadPDF() {
-    const element = document.querySelector('main');
-    const opt = {
-      margin:       0.5,
-      filename:     'aakash-invictus-strategic-plan.pdf',
-      image:        { type: 'jpeg', quality: 0.98 },
-      html2canvas:  { scale: 2 },
-      jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
-    };
-    html2pdf().set(opt).from(element).save();
-  }
-</script>
+        // PDF Export Functionality
+        const exportPdfBtn = document.getElementById('exportPdfBtn');
+        const pdfSpinner = document.getElementById('pdfSpinner');
+        const llmFeaturesSection = document.getElementById('llm-features'); // Get the LLM features section
+
+        exportPdfBtn.addEventListener('click', () => {
+            const element = document.getElementById('infographic-content'); // The main content to convert
+
+            pdfSpinner.classList.remove('hidden'); // Show spinner
+            exportPdfBtn.disabled = true; // Disable button
+
+            // Temporarily hide LLM features for PDF export
+            llmFeaturesSection.classList.add('pdf-export-hide');
+
+            html2pdf(element, {
+                margin: 10,
+                filename: 'Aakash_INVICTUS_Strategic_Growth_Infographic.pdf',
+                image: { type: 'jpeg', quality: 0.98 },
+                html2canvas: { scale: 2, logging: true, dpi: 192, letterRendering: true },
+                jsPDF: { unit: 'mm', format: 'a3', orientation: 'portrait' } // Increased format to A3 for more content
+            }).then(() => {
+                // Re-show LLM features after PDF generation
+                llmFeaturesSection.classList.remove('pdf-export-hide');
+                pdfSpinner.classList.add('hidden'); // Hide spinner
+                exportPdfBtn.disabled = false; // Enable button
+            }).catch(error => {
+                console.error('Error generating PDF:', error);
+                llmFeaturesSection.classList.remove('pdf-export-hide'); // Ensure LLM features are visible even on error
+                pdfSpinner.classList.add('hidden'); // Hide spinner
+                exportPdfBtn.disabled = false; // Enable button
+                alert('Failed to generate PDF. Please try again.'); // Use a simple alert for error
+            });
+        });
+    </script>
 </body>
 </html>
