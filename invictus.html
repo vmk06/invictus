@@ -1,0 +1,531 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.6">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="en"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;Aakash INVICTUS - Strategic Growth Plan&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdn.jsdelivr.net/npm/chart.js"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;link rel="preconnect" href="https://fonts.googleapis.com"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&amp;display=swap" rel="stylesheet"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>body {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-family: 'Inter', sans-serif;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #F7F7F7;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.chart-container {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: relative;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 100%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>max-width: 600px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-left: auto;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-right: auto;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 350px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>max-height: 400px;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>@media (min-width: 768px) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>.chart-container {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>height: 400px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.kpi-card {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: white;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 0.75rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 1.5rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: transform 0.3s ease, box-shadow 0.3s ease;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.kpi-card:hover {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transform: translateY(-5px);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.1);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.timeline-item {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: relative;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding-bottom: 2rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding-left: 2.5rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-left: 2px solid #053F5C;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.timeline-dot {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>position: absolute;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>left: -0.5rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>top: 0;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 1rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 1rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 9999px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #F34213;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: 2px solid #FFFFFF;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.gradient-text {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background: linear-gradient(90deg, #00A6FB, #053F5C);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>-webkit-background-clip: text;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>-webkit-text-fill-color: transparent;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.btn-primary {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #00A6FB;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>color: white;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>padding: 0.75rem 1.5rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 0.5rem;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>font-weight: 600;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>transition: background-color 0.3s ease;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>cursor: pointer;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: none;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.btn-primary:hover {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>background-color: #053F5C;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>.loading-spinner {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border: 4px solid #f3f3f3;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-top: 4px solid #00A6FB;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>border-radius: 50%;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>width: 24px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>height: 24px;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>animation: spin 1s linear infinite;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>display: inline-block;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>vertical-align: middle;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>margin-left: 0.5rem;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>@keyframes spin {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>0% { transform: rotate(0deg); }</p>
+<p class="p1"><span class="Apple-converted-space">            </span>100% { transform: rotate(360deg); }</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body class="bg-gray-50 text-gray-800"&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;main class="container mx-auto p-4 md:p-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;header class="text-center mb-12"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h1 class="text-4xl md:text-6xl font-black gradient-text"&gt;PROJECT INVICTUS&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="text-xl mt-2 text-gray-600"&gt;A Strategic Blueprint for Dominating JEE Prep in South India&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/header&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;section id="kpis" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="kpi-card text-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="text-5xl font-extrabold text-[#00A6FB]"&gt;3,500+&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="text-lg font-semibold text-gray-700 mt-2"&gt;Total Admission Goal&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="text-sm text-gray-500"&gt;Across Four Key Southern Cities&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="kpi-card text-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="text-5xl font-extrabold text-[#F34213]"&gt;4&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="text-lg font-semibold text-gray-700 mt-2"&gt;Target Cities&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="text-sm text-gray-500"&gt;Hyderabad, Vizag, Chennai, Bengaluru&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="kpi-card text-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="text-5xl font-extrabold text-[#053F5C]"&gt;5&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="text-lg font-semibold text-gray-700 mt-2"&gt;Student Segments&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="text-sm text-gray-500"&gt;Class IX, X, XI, XII &amp; XII Pass&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">             </span>&lt;div class="kpi-card text-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="text-5xl font-extrabold" style="color:#1abc9c"&gt;88%&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="text-lg font-semibold text-gray-700 mt-2"&gt;Projected Growth&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="text-sm text-gray-500"&gt;In Indian Tutorial Business (5 Yrs)&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;section class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="bg-white rounded-lg shadow-md p-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h2 class="text-2xl font-bold text-center mb-4 text-[#053F5C]"&gt;The Challenge: Current vs. Target Admissions&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="text-center text-gray-600 mb-6"&gt;The INVICTUS program aims for ambitious growth, bridging the gap between current traction and anticipated market potential in key southern cities.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="chart-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;canvas id="admissionGoalsChart"&gt;&lt;/canvas&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="bg-white rounded-lg shadow-md p-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h2 class="text-2xl font-bold text-center mb-4 text-[#053F5C]"&gt;Competitive Fee Landscape (2-Year Programs)&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                 </span>&lt;p class="text-center text-gray-600 mb-6"&gt;INVICTUS is positioned as a premium offering. Its proposed fee structure is competitive against other top-tier institutes providing comprehensive, multi-year programs.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="chart-container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;canvas id="feeComparisonChart"&gt;&lt;/canvas&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;section class="mb-12"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">             </span>&lt;div class="bg-white rounded-lg shadow-md p-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h2 class="text-2xl font-bold text-center mb-4 text-[#053F5C]"&gt;Admission Target Breakdown by City &amp; Class&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="text-center text-gray-600 mb-6"&gt;The admission goals are strategically distributed across different student segments to build a strong pipeline from foundation to advanced levels.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="chart-container" style="max-width: 1000px; height: 450px;"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;canvas id="targetMixChart"&gt;&lt;/canvas&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;section id="strategy" class="mb-12"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;h2 class="text-3xl font-bold text-center mb-8 text-[#053F5C]"&gt;Core Strategic Growth Levers&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="grid grid-cols-1 md:grid-cols-3 gap-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="kpi-card p-6 text-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="text-6xl mb-4 text-[#00A6FB]"&gt;🤝&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-xl font-bold mb-2 text-gray-800"&gt;Integrated School Tie-ups&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-600"&gt;Forge deep partnerships with top schools to create a seamless learning ecosystem, offering premium integrated programs from Class IX to XII.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="kpi-card p-6 text-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="text-6xl mb-4 text-[#F34213]"&gt;🚀&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-xl font-bold mb-2 text-gray-800"&gt;Experiential Marketing&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-600"&gt;Conduct "Masterclass Series" and "Parent-Student Interactive Sessions" to showcase the advanced pedagogy and build trust directly with our audience.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="kpi-card p-6 text-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                     </span>&lt;div class="text-6xl mb-4 text-[#053F5C]"&gt;🏆&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 class="text-xl font-bold mb-2 text-gray-800"&gt;Targeted Scholarship Drives&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p class="text-gray-600"&gt;Utilize ANTHE as a primary talent acquisition funnel, positioning it as the direct gateway to the elite INVICTUS program with exclusive benefits.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;section id="llm-features" class="mb-12 grid grid-cols-1 lg:grid-cols-2 gap-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="bg-white rounded-lg shadow-md p-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h2 class="text-2xl font-bold text-center mb-4 text-[#053F5C]"&gt;✨ School Tie-up Pitch Generator ✨&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="text-center text-gray-600 mb-6"&gt;Generate a persuasive pitch for school principals to partner with Aakash INVICTUS.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="flex flex-col space-y-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;label for="pitchCity" class="block text-gray-700 text-sm font-bold mb-2"&gt;Select City:&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;select id="pitchCity" class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;option value="Hyderabad"&gt;Hyderabad&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;option value="Vizag"&gt;Vizag&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;option value="Chennai"&gt;Chennai&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;option value="Bengaluru"&gt;Bengaluru&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/select&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;label for="pitchProgram" class="block text-gray-700 text-sm font-bold mb-2"&gt;Select Program Type:&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;select id="pitchProgram" class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;option value="2-year Class XI &amp; XII program"&gt;2-year Class XI &amp; XII program&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;option value="4-year IX to XII program"&gt;4-year IX to XII program&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;option value="Class XII Pass program"&gt;Class XII Pass program&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/select&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button id="generatePitchBtn" class="btn-primary flex items-center justify-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>Generate Pitch &lt;span id="pitchSpinner" class="hidden loading-spinner"&gt;&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;textarea id="pitchOutput" rows="8" class="mt-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Generated pitch will appear here..." readonly&gt;&lt;/textarea&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div class="bg-white rounded-lg shadow-md p-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h2 class="text-2xl font-bold text-center mb-4 text-[#053F5C]"&gt;✨ Promotional Activity Idea Generator ✨&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;p class="text-center text-gray-600 mb-6"&gt;Get innovative ideas for promotional activities based on month and city.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div class="flex flex-col space-y-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;label for="activityMonth" class="block text-gray-700 text-sm font-bold mb-2"&gt;Select Month:&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;select id="activityMonth" class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;option value="July"&gt;July&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;option value="August"&gt;August&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;option value="September"&gt;September&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;option value="October"&gt;October&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;option value="November"&gt;November&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;option value="December"&gt;December&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/select&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;label for="activityCity" class="block text-gray-700 text-sm font-bold mb-2"&gt;Select City:&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;select id="activityCity" class="shadow border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;option value="Hyderabad"&gt;Hyderabad&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;option value="Vizag"&gt;Vizag&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;option value="Chennai"&gt;Chennai&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;option value="Bengaluru"&gt;Bengaluru&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/select&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button id="generateActivityBtn" class="btn-primary flex items-center justify-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>Generate Ideas &lt;span id="activitySpinner" class="hidden loading-spinner"&gt;&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;textarea id="activityOutput" rows="8" class="mt-4 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Generated activities will appear here..." readonly&gt;&lt;/textarea&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;section id="timeline" class="mb-12"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">             </span>&lt;div class="bg-white rounded-lg shadow-md p-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h2 class="text-3xl font-bold text-center mb-8 text-[#053F5C]"&gt;Month-wise Promotional Activity Plan&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                 </span>&lt;div class="relative"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="timeline-item"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="timeline-dot"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h4 class="font-bold text-lg text-[#F34213]"&gt;July: Market Penetration &amp; Awareness&lt;/h4&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-gray-600"&gt;Launch "Unlock Your Advanced Potential" digital campaign and Masterclass Series. Initiate targeted outreach to top-tier schools for tie-ups.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="timeline-item"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="timeline-dot"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h4 class="font-bold text-lg text-[#F34213]"&gt;August: Lead Nurturing &amp; Engagement&lt;/h4&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-gray-600"&gt;Roll out "Unshakeable Foundation" content series. Host Parent-Student Interactive Sessions to deepen engagement and explain advanced pedagogy.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="timeline-item"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="timeline-dot"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h4 class="font-bold text-lg text-[#F34213]"&gt;September: Conversion &amp; Enrollment Drive&lt;/h4&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-gray-600"&gt;Promote "ANTHE for INVICTUS" as the direct gateway to the elite program, supported by exclusive prep workshops for high-potential students.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div class="timeline-item"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="timeline-dot"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h4 class="font-bold text-lg text-[#F34213]"&gt;October: Pre-JEE Main 1 Enrollment Boost&lt;/h4&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-gray-600"&gt;Launch "Master JEE Main with Advanced Edge" strategy series and mock test marathon with deep, personalized analytics.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                     </span>&lt;div class="timeline-item"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="timeline-dot"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h4 class="font-bold text-lg text-[#F34213]"&gt;November: Sustained Engagement&lt;/h4&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-gray-600"&gt;Run "Balancing Boards &amp; JEE" workshops, positioning INVICTUS as the solution for managing academic pressure efficiently.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                     </span>&lt;div class="timeline-item" style="border-left: 2px solid transparent;"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div class="timeline-dot"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h4 class="font-bold text-lg text-[#F34213]"&gt;December &amp; Beyond: Advanced Focus&lt;/h4&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p class="text-gray-600"&gt;Provide post-exam analysis and launch "INVICTUS Advanced Pathway" for serious aspirants, driving early admissions for the next cycle.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/section&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;footer class="text-center pt-8 border-t border-gray-300"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;p class="text-gray-500"&gt;&amp;copy; 2025 Aakash Institute. All Rights Reserved. This infographic is a strategic representation based on market research.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/footer&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/main&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>function wrapLabel(str, maxLen) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (str.length &lt;= maxLen) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>return str;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const words = str.split(' ');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let lines = [];</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let currentLine = '';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>for (const word of words) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if ((currentLine + ' ' + word).trim().length &gt; maxLen) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>lines.push(currentLine.trim());</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>currentLine = word;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>currentLine = (currentLine + ' ' + word).trim();</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (currentLine) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>lines.push(currentLine.trim());</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>return lines;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const tooltipTitleCallback = (tooltipItems) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const item = tooltipItems[0];</p>
+<p class="p1"><span class="Apple-converted-space">            </span>let label = item.chart.data.labels[item.dataIndex];</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (Array.isArray(label)) {</p>
+<p class="p1"><span class="Apple-converted-space">              </span>return label.join(' ');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>return label;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>};</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const sharedChartOptions = {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>maintainAspectRatio: false,</p>
+<p class="p1"><span class="Apple-converted-space">            </span>responsive: true,</p>
+<p class="p1"><span class="Apple-converted-space">            </span>plugins: {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>legend: {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>position: 'top',</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>labels: {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>font: {</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>size: 12,</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>family: 'Inter',</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>tooltip: {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>callbacks: {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>title: tooltipTitleCallback</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>},</p>
+<p class="p1"><span class="Apple-converted-space">            </span>scales: {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>x: {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>ticks: {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>font: {</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>size: 11,</p>
+<p class="p1"><span class="Apple-converted-space">                             </span>family: 'Inter',</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>grid: {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>display: false</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>y: {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>beginAtZero: true,</p>
+<p class="p1"><span class="Apple-converted-space">                     </span>ticks: {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>font: {</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>size: 11,</p>
+<p class="p1"><span class="Apple-converted-space">                             </span>family: 'Inter',</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const colors = {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>blue: '#00A6FB',</p>
+<p class="p1"><span class="Apple-converted-space">            </span>orange: '#F34213',</p>
+<p class="p1"><span class="Apple-converted-space">            </span>darkBlue: '#053F5C',</p>
+<p class="p1"><span class="Apple-converted-space">            </span>lightGray: '#F7F7F7',</p>
+<p class="p1"><span class="Apple-converted-space">            </span>white: '#FFFFFF',</p>
+<p class="p1"><span class="Apple-converted-space">            </span>green: '#27ae60',</p>
+<p class="p1"><span class="Apple-converted-space">            </span>purple: '#8e44ad',</p>
+<p class="p1"><span class="Apple-converted-space">            </span>yellow: '#f1c40f',</p>
+<p class="p1"><span class="Apple-converted-space">            </span>red: '#e74c3c'</p>
+<p class="p1"><span class="Apple-converted-space">        </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const admissionGoalsCtx = document.getElementById('admissionGoalsChart').getContext('2d');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>new Chart(admissionGoalsCtx, {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>type: 'bar',</p>
+<p class="p1"><span class="Apple-converted-space">            </span>data: {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>labels: ['Chennai', 'Hyderabad', 'Vizag', 'Bengaluru'],</p>
+<p class="p1"><span class="Apple-converted-space">                </span>datasets: [{</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>label: 'Current Admissions',</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>data: [800, 100, 100, 100],</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>backgroundColor: colors.orange,</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>borderColor: colors.orange,</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>borderWidth: 1,</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>barPercentage: 0.6,</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>categoryPercentage: 0.7</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}, {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>label: 'Target Admissions',</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>data: [2000, 500, 500, 500],</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>backgroundColor: colors.blue,</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>borderColor: colors.blue,</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>borderWidth: 1,</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>barPercentage: 0.6,</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>categoryPercentage: 0.7</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}]</p>
+<p class="p1"><span class="Apple-converted-space">            </span>},</p>
+<p class="p1"><span class="Apple-converted-space">            </span>options: {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>...sharedChartOptions,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>scales: {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>y: { ...sharedChartOptions.scales.y, title: { display: true, text: 'Number of Students' } }</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const feeComparisonCtx = document.getElementById('feeComparisonChart').getContext('2d');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>new Chart(feeComparisonCtx, {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>type: 'bar',</p>
+<p class="p1"><span class="Apple-converted-space">            </span>data: {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>labels: ['Aakash INVICTUS (MSP)', wrapLabel('Narayana IIT Academy', 16), wrapLabel('FIITJEE (Weekday)', 16), 'Vedantu', 'Resonance'],</p>
+<p class="p1"><span class="Apple-converted-space">                </span>datasets: [{</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>label: 'Fee in INR (Lakhs)',</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>data: [3.5, 4.68, 4.32, 2.35, 3.30],</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>backgroundColor: [colors.orange, colors.darkBlue, colors.darkBlue, colors.darkBlue, colors.darkBlue, colors.darkBlue],</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>borderColor: [colors.orange, colors.darkBlue, colors.darkBlue, colors.darkBlue, colors.darkBlue, colors.darkBlue],</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>borderWidth: 1</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}]</p>
+<p class="p1"><span class="Apple-converted-space">            </span>},</p>
+<p class="p1"><span class="Apple-converted-space">            </span>options: {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>...sharedChartOptions,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>scales: {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>y: { ...sharedChartOptions.scales.y, title: { display: true, text: 'Fee in INR (Lakhs)' } }</p>
+<p class="p1"><span class="Apple-converted-space">                </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                </span>plugins: {</p>
+<p class="p1"><span class="Apple-converted-space">                     </span>...sharedChartOptions.plugins,</p>
+<p class="p1"><span class="Apple-converted-space">                     </span>legend: { display: false }</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p2"><span class="Apple-converted-space">        </span></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const targetMixCtx = document.getElementById('targetMixChart').getContext('2d');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>new Chart(targetMixCtx, {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>type: 'bar',</p>
+<p class="p1"><span class="Apple-converted-space">            </span>data: {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>labels: ['Chennai (2000)', 'Hyderabad (500)', 'Vizag (500)', 'Bengaluru (500)'],</p>
+<p class="p1"><span class="Apple-converted-space">                </span>datasets: [</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{ label: 'Class IX', data: [300, 100, 100, 100], backgroundColor: colors.blue },</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{ label: 'Class X', data: [400, 100, 100, 100], backgroundColor: colors.orange },</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{ label: 'Class XI', data: [500, 100, 100, 100], backgroundColor: colors.green },</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{ label: 'Class XII', data: [500, 100, 100, 100], backgroundColor: colors.purple },</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{ label: 'XII Pass', data: [300, 100, 100, 100], backgroundColor: colors.yellow }</p>
+<p class="p1"><span class="Apple-converted-space">                </span>]</p>
+<p class="p1"><span class="Apple-converted-space">            </span>},</p>
+<p class="p1"><span class="Apple-converted-space">            </span>options: {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>...sharedChartOptions,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>indexAxis: 'x',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>scales: {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>x: {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>stacked: true,</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>...sharedChartOptions.scales.x</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>},</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>y: {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>stacked: true,</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>...sharedChartOptions.scales.y,</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>title: { display: true, text: 'Number of Students' }</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Gemini API Integration</p>
+<p class="p1"><span class="Apple-converted-space">        </span>async function callGeminiAPI(prompt, outputElement, spinnerElement) {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>outputElement.value = '';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>spinnerElement.classList.remove('hidden');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>let chatHistory = [];</p>
+<p class="p1"><span class="Apple-converted-space">            </span>chatHistory.push({ role: "user", parts: [{ text: prompt }] });</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const payload = { contents: chatHistory };</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const apiKey = "";</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>try {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const response = await fetch(apiUrl, {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>method: 'POST',</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>headers: { 'Content-Type': 'application/json' },</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>body: JSON.stringify(payload)</p>
+<p class="p1"><span class="Apple-converted-space">                </span>});</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const result = await response.json();</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (result.candidates &amp;&amp; result.candidates.length &gt; 0 &amp;&amp;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>result.candidates[0].content &amp;&amp; result.candidates[0].content.parts &amp;&amp;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>result.candidates[0].content.parts.length &gt; 0) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>const text = result.candidates[0].content.parts[0].text;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>outputElement.value = text;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>} else {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>outputElement.value = "Error: Could not generate response. Please try again.";</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>console.error("Gemini API response structure unexpected:", result);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} catch (error) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>outputElement.value = "Error: Failed to connect to the API. Please check your network or try again later.";</p>
+<p class="p1"><span class="Apple-converted-space">                </span>console.error("Error calling Gemini API:", error);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>} finally {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>spinnerElement.classList.add('hidden');</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">        </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// School Tie-up Pitch Generator</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const generatePitchBtn = document.getElementById('generatePitchBtn');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const pitchCity = document.getElementById('pitchCity');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const pitchProgram = document.getElementById('pitchProgram');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const pitchOutput = document.getElementById('pitchOutput');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const pitchSpinner = document.getElementById('pitchSpinner');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>generatePitchBtn.addEventListener('click', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const city = pitchCity.value;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const program = pitchProgram.value;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const prompt = `Generate a concise, persuasive pitch (around 150-200 words) for a school principal in ${city} to partner with Aakash Institute for our 'INVICTUS: An Advanced JEE prep program'. Focus on the benefits for their students for the ${program} program, highlighting our JEE expert faculty (trained 1000s of IITians), new material, and premium course structure. Emphasize how this partnership can elevate their school's academic reputation and student success in JEE.`;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>callGeminiAPI(prompt, pitchOutput, pitchSpinner);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>// Promotional Activity Idea Generator</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const generateActivityBtn = document.getElementById('generateActivityBtn');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const activityMonth = document.getElementById('activityMonth');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const activityCity = document.getElementById('activityCity');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const activityOutput = document.getElementById('activityOutput');</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const activitySpinner = document.getElementById('activitySpinner');</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>generateActivityBtn.addEventListener('click', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const month = activityMonth.value;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const city = activityCity.value;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const prompt = `Given the month of ${month} and the city of ${city}, suggest 3-4 innovative promotional activities for Aakash Institute's 'INVICTUS: An Advanced JEE prep program'. These activities should aim to attract students for JEE preparation, considering our premium course, expert faculty, and the need to achieve admission targets of 500 in Hyderabad/Vizag/Bengaluru and 2000 in Chennai. Think beyond traditional hoardings and press meets. Suggest activities that could be done in schools or public spaces, focusing on engagement and direct interaction.`;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>callGeminiAPI(prompt, activityOutput, activitySpinner);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
