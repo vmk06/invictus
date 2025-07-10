@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aakash INVICTUS - Strategic Growth Plan</title>
+    <link rel="icon" href="invictus-icon.png" type="image/png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/countup.js/2.0.7/countUp.min.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <style>
+        body { font-family: 'Inter', sans-serif; background-color: #F7F7F7; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800" onload="AOS.init()">
+
+<main class="container mx-auto p-4 md:p-8" data-aos="fade-up">
+    <header class="text-center mb-12">
+        <h1 class="text-4xl md:text-6xl font-black text-blue-600">PROJECT INVICTUS</h1>
+        <p class="text-xl mt-2 text-gray-600">A Strategic Blueprint for Dominating JEE Prep in South India</p>
+    </header>
+
+    <section class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+        <div class="bg-white p-6 rounded shadow text-center" data-aos="fade-right">
+            <p class="text-5xl font-extrabold text-blue-500"><span id="admissionCount">0</span>+</p>
+            <p class="text-lg font-semibold text-gray-700 mt-2">Total Admission Goal</p>
+        </div>
+        <div class="bg-white p-6 rounded shadow text-center" data-aos="fade-left">
+            <p class="text-5xl font-extrabold text-orange-500">4</p>
+            <p class="text-lg font-semibold text-gray-700 mt-2">Target Cities</p>
+        </div>
+    </section>
+
+    <footer class="text-center pt-8 border-t border-gray-300">
+        <p class="text-gray-500 text-sm">&copy; 2025 Aakash Institute. All Rights Reserved. Version 1.0 • Updated: July 10, 2025</p>
+    </footer>
+
+<section class="text-center my-12">
+    <button onclick="downloadPDF()" class="btn-primary text-lg">📄 Export This Infographic as PDF</button>
+</section>
+</main>
+
+<script>
+    const countUp = new CountUp('admissionCount', 3500);
+    if (!countUp.error) countUp.start();
+</script>
+
+
+<!-- html2pdf.js CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+<script>
+  function downloadPDF() {
+    const element = document.querySelector('main');
+    const opt = {
+      margin:       0.5,
+      filename:     'aakash-invictus-strategic-plan.pdf',
+      image:        { type: 'jpeg', quality: 0.98 },
+      html2canvas:  { scale: 2 },
+      jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+    };
+    html2pdf().set(opt).from(element).save();
+  }
+</script>
+</body>
+</html>
