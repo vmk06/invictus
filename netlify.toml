@@ -3,5 +3,6 @@
   publish = "."
 
 [functions]
-  node_bundler = "esbuild" # This can sometimes help with module resolution
-  node_version = "18" # Or "20", a recent LTS version
+  node_bundler = "esbuild"
+  # To set Node.js version, use a .nvmrc file in netlify/functions/
+  # or set NODE_VERSION as an environment variable in Netlify UI
