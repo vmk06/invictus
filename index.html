@@ -370,12 +370,7 @@
         </footer>
 
     </main>
-    <div class="text-center mt-8 mb-8">
-        <button id="exportPdfBtn" class="btn-primary flex items-center justify-center mx-auto">
-            Download as PDF <span id="pdfSpinner" class="hidden loading-spinner"></span>
-        </button>
-    </div>
-
+    
     <script>
         function wrapLabel(str, maxLen) {
             if (str.length <= maxLen) {
@@ -469,7 +464,7 @@
                 labels: ['Chennai', 'Hyderabad', 'Vizag', 'Bengaluru'],
                 datasets: [{
                     label: 'Current Admissions',
-                    data: [800, 100, 100, 100],
+                    data: [747, 66, 118, 20], // Updated current admissions
                     backgroundColor: colors.orange,
                     borderColor: colors.orange,
                     borderWidth: 1,
@@ -497,12 +492,12 @@
         new Chart(feeComparisonCtx, {
             type: 'bar',
             data: {
-                labels: ['Aakash INVICTUS (MSP)', wrapLabel('Narayana (2-Yr)', 16), wrapLabel('FIITJEE (2-Yr)', 16), 'Vedantu (2-Yr)', 'Resonance (2-Yr)'],
+                labels: ['Aakash INVICTUS (2-Yr)', 'FIITJEE (2-Yr)', 'Narayana (2-Yr)', 'Sri Chaitanya (2-Yr)', 'Resonance (2-Yr)'], // Removed Vedantu
                 datasets: [{
                     label: 'Fee in INR (Lakhs)',
-                    data: [3.5, 4.68, 1.60, 2.35, 3.30], /* Updated data from tables */
-                    backgroundColor: [colors.orange, colors.darkBlue, colors.darkBlue, colors.darkBlue, colors.darkBlue, colors.darkBlue],
-                    borderColor: [colors.orange, colors.darkBlue, colors.darkBlue, colors.darkBlue, colors.darkBlue, colors.darkBlue],
+                    data: [7, 7, 4, 4, 4], // Updated MRPs
+                    backgroundColor: [colors.orange, colors.darkBlue, colors.darkBlue, colors.darkBlue, colors.darkBlue],
+                    borderColor: [colors.orange, colors.darkBlue, colors.darkBlue, colors.darkBlue, colors.darkBlue],
                     borderWidth: 1
                 }]
             },
@@ -548,7 +543,7 @@
             }
         });
 
-        // Gemini API Integration
+        // Gemini API Integration - NOW CALLING THE PROXY
         async function callGeminiAPI(prompt, outputElement, spinnerElement) {
             outputElement.value = '';
             spinnerElement.classList.remove('hidden');
@@ -556,8 +551,9 @@
             let chatHistory = [];
             chatHistory.push({ role: "user", parts: [{ text: prompt }] });
             const payload = { contents: chatHistory };
-            const apiKey = ""; // Canvas will automatically provide the API key at runtime
-            const apiUrl = '/.netlify/functions/gemini-proxy'; // This is the endpoint for your Netlify Function
+            
+            // *** IMPORTANT CHANGE: Call your Netlify Function endpoint ***
+            const apiUrl = '/.netlify/functions/gemini-proxy'; 
 
             try {
                 const response = await fetch(apiUrl, {
@@ -566,18 +562,23 @@
                     body: JSON.stringify(payload)
                 });
                 const result = await response.json();
-                if (result.candidates && result.candidates.length > 0 &&
-                    result.candidates[0].content && result.candidates[0].content.parts &&
-                    result.candidates[0].content.parts.length > 0) {
-                    const text = result.candidates[0].content.parts[0].text;
-                    outputElement.value = text;
+                if (response.ok) { // Check if the response status is OK (200)
+                    if (result.candidates && result.candidates.length > 0 &&
+                        result.candidates[0].content && result.candidates[0].content.parts &&
+                        result.candidates[0].content.parts.length > 0) {
+                        const text = result.candidates[0].content.parts[0].text;
+                        outputElement.value = text;
+                    } else {
+                        outputElement.value = "Error: Could not generate response. Unexpected API response structure.";
+                        console.error("Gemini API response structure unexpected:", result);
+                    }
                 } else {
-                    outputElement.value = "Error: Could not generate response. Please try again.";
-                    console.error("Gemini API response structure unexpected:", result);
+                    outputElement.value = `Error from proxy: ${result.error || 'Unknown error'}`;
+                    console.error("Proxy error response:", result);
                 }
             } catch (error) {
-                outputElement.value = "Error: Failed to connect to the API. Please check your network or try again later.";
-                console.error("Error calling Gemini API:", error);
+                outputElement.value = "Error: Failed to connect to the proxy. Please check your network or try again later.";
+                console.error("Error calling proxy function:", error);
             } finally {
                 spinnerElement.classList.add('hidden');
             }
@@ -611,7 +612,7 @@
             callGeminiAPI(prompt, activityOutput, activitySpinner);
         });
 
-        // New Feature: Alumni Success Story Draft Generator
+        // Alumni Success Story Draft Generator
         const generateAlumniStoryBtn = document.getElementById('generateAlumniStoryBtn');
         const alumniNameInput = document.getElementById('alumniName');
         const alumniRankInput = document.getElementById('alumniRank');
@@ -633,7 +634,7 @@
             callGeminiAPI(prompt, alumniStoryOutput, alumniStorySpinner);
         });
 
-        // New Feature: Parent Seminar Topic Suggester
+        // Parent Seminar Topic Suggester
         const generateSeminarTopicBtn = document.getElementById('generateSeminarTopicBtn');
         const seminarCitySelect = document.getElementById('seminarCity');
         const seminarFocusSelect = document.getElementById('seminarFocus');
@@ -649,39 +650,39 @@
         });
 
 
-        // PDF Export Functionality
-        const exportPdfBtn = document.getElementById('exportPdfBtn');
-        const pdfSpinner = document.getElementById('pdfSpinner');
-        const llmFeaturesSection = document.getElementById('llm-features'); // Get the LLM features section
+        // PDF Export Functionality (Removed)
+        // const exportPdfBtn = document.getElementById('exportPdfBtn');
+        // const pdfSpinner = document.getElementById('pdfSpinner');
+        // const llmFeaturesSection = document.getElementById('llm-features'); // Get the LLM features section
 
-        exportPdfBtn.addEventListener('click', () => {
-            const element = document.getElementById('infographic-content'); // The main content to convert
+        // exportPdfBtn.addEventListener('click', () => {
+        //     const element = document.getElementById('infographic-content'); // The main content to convert
 
-            pdfSpinner.classList.remove('hidden'); // Show spinner
-            exportPdfBtn.disabled = true; // Disable button
+        //     pdfSpinner.classList.remove('hidden'); // Show spinner
+        //     exportPdfBtn.disabled = true; // Disable button
 
-            // Temporarily hide LLM features for PDF export
-            llmFeaturesSection.classList.add('pdf-export-hide');
+        //     // Temporarily hide LLM features for PDF export
+        //     llmFeaturesSection.classList.add('pdf-export-hide');
 
-            html2pdf(element, {
-                margin: 10,
-                filename: 'Aakash_INVICTUS_Strategic_Growth_Infographic.pdf',
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 2, logging: true, dpi: 192, letterRendering: true },
-                jsPDF: { unit: 'mm', format: 'a3', orientation: 'portrait' } // Increased format to A3 for more content
-            }).then(() => {
-                // Re-show LLM features after PDF generation
-                llmFeaturesSection.classList.remove('pdf-export-hide');
-                pdfSpinner.classList.add('hidden'); // Hide spinner
-                exportPdfBtn.disabled = false; // Enable button
-            }).catch(error => {
-                console.error('Error generating PDF:', error);
-                llmFeaturesSection.classList.remove('pdf-export-hide'); // Ensure LLM features are visible even on error
-                pdfSpinner.classList.add('hidden'); // Hide spinner
-                exportPdfBtn.disabled = false; // Enable button
-                alert('Failed to generate PDF. Please try again.'); // Use a simple alert for error
-            });
-        });
+        //     html2pdf(element, {
+        //         margin: 10,
+        //         filename: 'Aakash_INVICTUS_Strategic_Growth_Infographic.pdf',
+        //         image: { type: 'jpeg', quality: 0.98 },
+        //         html2canvas: { scale: 2, logging: true, dpi: 192, letterRendering: true },
+        //         jsPDF: { unit: 'mm', format: 'a3', orientation: 'portrait' } // Increased format to A3 for more content
+        //     }).then(() => {
+        //         // Re-show LLM features after PDF generation
+        //         llmFeaturesSection.classList.remove('pdf-export-hide');
+        //         pdfSpinner.classList.add('hidden'); // Hide spinner
+        //         exportPdfBtn.disabled = false; // Enable button
+        //     }).catch(error => {
+        //         console.error('Error generating PDF:', error);
+        //         llmFeaturesSection.classList.remove('pdf-export-hide'); // Ensure LLM features are visible even on error
+        //         pdfSpinner.classList.add('hidden'); // Hide spinner
+        //         exportPdfBtn.disabled = false; // Enable button
+        //         alert('Failed to generate PDF. Please try again.'); // Use a simple alert for error
+        //     });
+        // });
     </script>
 </body>
 </html>
