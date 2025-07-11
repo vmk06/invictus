@@ -1,0 +1,15 @@
+{
+  "name": "invictus-infographic-app",
+  "version": "1.0.0",
+  "description": "Aakash INVICTUS Strategic Growth Infographic with LLM features",
+  "main": "index.html",
+  "scripts": {
+    "start": "netlify dev"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "node-fetch": "^2.6.1"
+  }
+}
