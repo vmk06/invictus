@@ -1,1 +1,9 @@
-
+{
+  "name": "gemini-proxy-functions",
+  "version": "1.0.0",
+  "description": "Netlify function to proxy Gemini API calls",
+  "main": "gemini-proxy.js",
+  "dependencies": {
+    "node-fetch": "^2.6.1"
+  }
+}
