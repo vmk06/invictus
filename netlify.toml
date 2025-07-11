@@ -4,5 +4,5 @@
 
 [functions]
   node_bundler = "esbuild"
-  # To set Node.js version, use a .nvmrc file in netlify/functions/
-  # or set NODE_VERSION as an environment variable in Netlify UI
+  # Node.js version is now handled by .nvmrc in netlify/functions/
+  external_node_modules = ["node-fetch"] # Explicitly include node-fetch for bundling
