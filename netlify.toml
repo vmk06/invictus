@@ -1,4 +1,7 @@
 [build]
   functions = "netlify/functions"
   publish = "."
-# Added this comment to trigger a new build
+
+[functions]
+  node_bundler = "esbuild" # This can sometimes help with module resolution
+  node_version = "18" # Or "20", a recent LTS version
